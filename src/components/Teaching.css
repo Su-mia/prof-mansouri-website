@@ -1,0 +1,171 @@
+.teaching {
+  border-top: 1px solid #e8e8e8;
+  background: #f8f8f8;
+}
+
+.teaching__header {
+  margin-bottom: 64px;
+}
+
+/* Courses */
+.teaching__courses {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  background: #e8e8e8;
+  border: 1px solid #e8e8e8;
+  margin-bottom: 64px;
+}
+
+.teaching__course {
+  background: #fff;
+  display: grid;
+  grid-template-columns: 260px 1fr;
+  gap: 40px;
+  padding: 32px 36px;
+  border-left: 2px solid transparent;
+  transition: background 0.2s ease, border-color 0.2s ease;
+}
+
+.teaching__course:hover {
+  background: #fafafa;
+  border-left-color: #ccc;
+}
+
+.teaching__code {
+  display: block;
+  font-size: 0.65rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #ccc;
+  margin-bottom: 10px;
+}
+
+.teaching__course-title {
+  font-size: 0.95rem;
+  font-weight: 400;
+  color: #444;
+  line-height: 1.4;
+  transition: color 0.2s ease;
+}
+
+.teaching__course:hover .teaching__course-title {
+  color: #111;
+}
+
+.teaching__course-meta {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  font-size: 0.7rem;
+  color: #bbb;
+  margin-top: 10px;
+}
+
+.teaching__dot {
+  color: #ddd;
+}
+
+.teaching__course-desc {
+  font-size: 0.82rem;
+  color: #888;
+  line-height: 1.75;
+  font-weight: 300;
+  margin-bottom: 16px;
+}
+
+.teaching__materials {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.teaching__material-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.65rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #bbb;
+  border: 1px solid #e0e0e0;
+  padding: 5px 10px;
+  transition: all 0.25s ease;
+}
+
+.teaching__material-link:hover {
+  color: #111;
+  border-color: #aaa;
+}
+
+/* Supervised theses */
+.teaching__sub-title {
+  font-size: 0.68rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #bbb;
+  font-weight: 400;
+  margin-bottom: 24px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid #e8e8e8;
+}
+
+.teaching__thesis-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  background: #e8e8e8;
+  border: 1px solid #e8e8e8;
+}
+
+.teaching__thesis {
+  background: #fff;
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  padding: 20px 28px;
+  transition: background 0.2s ease;
+}
+
+.teaching__thesis:hover {
+  background: #fafafa;
+}
+
+.teaching__thesis-level {
+  flex-shrink: 0;
+  min-width: 52px;
+  text-align: center;
+}
+
+.teaching__thesis-title {
+  font-size: 0.85rem;
+  color: #555;
+  line-height: 1.4;
+  font-weight: 300;
+  transition: color 0.2s ease;
+}
+
+.teaching__thesis:hover .teaching__thesis-title {
+  color: #111;
+}
+
+.teaching__thesis-student {
+  font-size: 0.7rem;
+  color: #bbb;
+  margin-top: 4px;
+  font-style: italic;
+}
+
+@media (max-width: 768px) {
+  .teaching__course {
+    grid-template-columns: 1fr;
+    gap: 16px;
+    padding: 24px 20px;
+  }
+  .teaching__thesis {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 20px;
+  }
+}

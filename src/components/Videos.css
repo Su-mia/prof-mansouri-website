@@ -1,0 +1,140 @@
+.videos {
+  border-top: 1px solid #e8e8e8;
+  background: #fff;
+}
+
+.videos__header {
+  margin-bottom: 64px;
+}
+
+.videos__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: #e8e8e8;
+  border: 1px solid #e8e8e8;
+}
+
+.videos__card {
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+  transition: background 0.2s ease;
+}
+
+.videos__card:hover {
+  background: #fafafa;
+}
+
+/* Thumbnail — kept dark as a video frame */
+.videos__thumb {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  background: #1a1a1a;
+}
+
+.videos__thumb-bg {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+  background-size: 32px 32px;
+  transition: opacity 0.3s ease;
+}
+
+.videos__card:hover .videos__thumb-bg {
+  opacity: 0.5;
+}
+
+.videos__play {
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  width: 48px;
+  height: 48px;
+  border: 1px solid rgba(255,255,255,0.25);
+  background: rgba(0,0,0,0.4);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.25s ease;
+}
+
+.videos__card:hover .videos__play {
+  border-color: rgba(255,255,255,0.8);
+  background: rgba(0,0,0,0.6);
+  transform: scale(1.05);
+}
+
+.videos__duration {
+  position: absolute;
+  bottom: 10px;
+  right: 12px;
+  font-size: 0.65rem;
+  letter-spacing: 0.08em;
+  color: #ccc;
+  background: rgba(0,0,0,0.55);
+  padding: 2px 6px;
+}
+
+/* Info */
+.videos__info {
+  padding: 24px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.videos__meta {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.videos__year {
+  font-size: 0.68rem;
+  color: #bbb;
+  letter-spacing: 0.08em;
+}
+
+.videos__title {
+  font-size: 0.9rem;
+  font-weight: 400;
+  color: #444;
+  line-height: 1.5;
+  transition: color 0.2s ease;
+}
+
+.videos__card:hover .videos__title {
+  color: #111;
+}
+
+.videos__venue {
+  font-size: 0.72rem;
+  color: #bbb;
+  font-style: italic;
+}
+
+.videos__desc {
+  font-size: 0.78rem;
+  color: #999;
+  line-height: 1.7;
+  font-weight: 300;
+  margin-top: 4px;
+}
+
+@media (max-width: 900px) {
+  .videos__grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 600px) {
+  .videos__grid {
+    grid-template-columns: 1fr;
+  }
+}
