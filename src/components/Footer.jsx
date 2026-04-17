@@ -1,12 +1,15 @@
+import { useData } from '../context/DataContext';
 import './Footer.css';
 
 export default function Footer() {
+  const { data } = useData();
+  const { name, role } = data.footer;
   return (
     <footer className="footer">
       <div className="container footer__inner">
         <div className="footer__brand">
-          <span className="footer__name">Ahmed Mansouri</span>
-          <span className="footer__role">Dr.Eng · Architecture</span>
+          <span className="footer__name">{name}</span>
+          <span className="footer__role">{role}</span>
         </div>
 
         <nav className="footer__nav">

@@ -1,70 +1,10 @@
 import { useReveal } from '../hooks/useReveal';
+import { useData } from '../context/DataContext';
 import './Videos.css';
 
-const VIDEOS = [
-  {
-    id: 1,
-    title: 'Architecture as Memory: A Public Lecture',
-    duration: '52:14',
-    type: 'Lecture',
-    year: '2024',
-    venue: 'National School of Architecture',
-    desc: 'Keynote address exploring how architecture encodes collective and individual memory through spatial organization and material choice.',
-    thumb: null,
-  },
-  {
-    id: 2,
-    title: 'Sustainable Design in the Maghreb Context',
-    duration: '38:40',
-    type: 'Conference',
-    year: '2023',
-    venue: 'EARC Symposium, Tunis',
-    desc: 'Paper presentation at the Euro-African Regional Conference on climate-responsive architecture informed by vernacular tradition.',
-    thumb: null,
-  },
-  {
-    id: 3,
-    title: 'Parametric Tools in Studio Education',
-    duration: '44:20',
-    type: 'Workshop',
-    year: '2023',
-    venue: 'Department of Architecture',
-    desc: 'A recorded workshop introducing Grasshopper and Rhino to third-year architecture students, with live modeling exercises.',
-    thumb: null,
-  },
-  {
-    id: 4,
-    title: 'Desert Vernacular: Field Recording',
-    duration: '18:05',
-    type: 'Documentary',
-    year: '2022',
-    venue: 'Tamanrasset, Algeria',
-    desc: 'A short documentary following a research field trip documenting Saharan ksour architecture and earthen construction techniques.',
-    thumb: null,
-  },
-  {
-    id: 5,
-    title: 'Heritage and Modernity: Panel Discussion',
-    duration: '1:24:10',
-    type: 'Panel',
-    year: '2022',
-    venue: 'University of Architecture — International Forum',
-    desc: 'A moderated panel addressing the tension between heritage conservation and the imperatives of contemporary urban development.',
-    thumb: null,
-  },
-  {
-    id: 6,
-    title: 'Tectonic Ethics in the Post-Digital Age',
-    duration: '29:55',
-    type: 'Lecture',
-    year: '2021',
-    venue: 'Architecture Review Podcast',
-    desc: 'A recorded podcast episode discussing material authenticity, craft, and the ethical dimensions of computational design.',
-    thumb: null,
-  },
-];
-
 export default function Videos() {
+  const { data } = useData();
+  const VIDEOS = data.videos;
   const ref = useReveal();
 
   return (

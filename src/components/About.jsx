@@ -1,26 +1,10 @@
 import { useReveal } from '../hooks/useReveal';
+import { useData } from '../context/DataContext';
 import './About.css';
 
-const EDUCATION = [
-  { degree: 'Doctor of Engineering', field: 'Architecture', institution: 'University of Architecture', year: '2005' },
-  { degree: 'Master of Science', field: 'Architectural Design', institution: 'National School of Architecture', year: '2001' },
-  { degree: 'Bachelor of Architecture', field: 'Architecture', institution: 'National School of Architecture', year: '1999' },
-];
-
-const POSITIONS = [
-  { role: 'Full Professor', org: 'Department of Architecture', period: '2015 – Present' },
-  { role: 'Associate Professor', org: 'Department of Architecture', period: '2010 – 2015' },
-  { role: 'Assistant Professor', org: 'Department of Architecture', period: '2006 – 2010' },
-  { role: 'Visiting Researcher', org: 'European Institute of Urbanism', period: '2008 – 2009' },
-];
-
-const SKILLS = [
-  'Architectural Theory', 'Sustainable Design', 'Urban Planning',
-  'BIM / Revit', 'AutoCAD', 'Rhino 3D', 'Parametric Design',
-  'Research Methodology', 'Academic Writing', 'Studio Pedagogy',
-];
-
 export default function About() {
+  const { data } = useData();
+  const { education: EDUCATION, positions: POSITIONS, skills: SKILLS } = data.about;
   const ref = useReveal();
 
   return (
@@ -50,7 +34,7 @@ export default function About() {
             <h3 className="about__block-title">Education</h3>
             <div className="about__timeline">
               {EDUCATION.map((e) => (
-                <div key={e.degree} className="about__timeline-item">
+                <div key={e.id} className="about__timeline-item">
                   <span className="about__timeline-year">{e.year}</span>
                   <div className="about__timeline-content">
                     <p className="about__timeline-degree">{e.degree}</p>
@@ -67,7 +51,7 @@ export default function About() {
             <h3 className="about__block-title">Academic Positions</h3>
             <div className="about__timeline">
               {POSITIONS.map((p) => (
-                <div key={p.role + p.period} className="about__timeline-item">
+                <div key={p.id} className="about__timeline-item">
                   <span className="about__timeline-year">{p.period}</span>
                   <div className="about__timeline-content">
                     <p className="about__timeline-degree">{p.role}</p>

@@ -1,71 +1,11 @@
 import { useState } from 'react';
 import { useReveal } from '../hooks/useReveal';
+import { useData } from '../context/DataContext';
 import './Designs.css';
 
-const PROJECTS = [
-  {
-    id: 1,
-    title: 'Cultural Center — Algiers',
-    type: 'Cultural',
-    year: '2022',
-    area: '12,400 m²',
-    status: 'Built',
-    desc: 'A monolithic concrete structure articulated by light wells and vaulted promenades, set against the Mediterranean hillside.',
-    aspect: 'wide',
-  },
-  {
-    id: 2,
-    title: 'Desert Research Station — Tamanrasset',
-    type: 'Research',
-    year: '2021',
-    area: '3,200 m²',
-    status: 'Built',
-    desc: 'Low-profile rammed-earth compound integrating passive ventilation and solar shading derived from Saharan vernacular models.',
-    aspect: 'tall',
-  },
-  {
-    id: 3,
-    title: 'Waterfront Promenade — Annaba',
-    type: 'Urban',
-    year: '2020',
-    area: '—',
-    status: 'Realized',
-    desc: 'An urban edge redefined by canopy structures, reflecting pools, and granite paving that mediates between the city grid and sea.',
-    aspect: 'wide',
-  },
-  {
-    id: 4,
-    title: 'School of Architecture — Tlemcen',
-    type: 'Educational',
-    year: '2018',
-    area: '8,600 m²',
-    status: 'Built',
-    desc: 'Layered terraced volumes carved from the hillside topography; studios oriented toward the Medina skyline.',
-    aspect: 'normal',
-  },
-  {
-    id: 5,
-    title: 'Memorial Garden — Constantine',
-    type: 'Cultural',
-    year: '2017',
-    area: '—',
-    status: 'Competition',
-    desc: 'A landscaped void carved into rocky terrain, where silence, erosion, and inscription form the material language of commemoration.',
-    aspect: 'normal',
-  },
-  {
-    id: 6,
-    title: 'Eco-Housing Prototype',
-    type: 'Residential',
-    year: '2016',
-    area: '180 m²',
-    status: 'Prototype',
-    desc: 'A net-zero dwelling demonstrating bioclimatic principles through earthen walls, green roof, and roof-integrated water harvesting.',
-    aspect: 'normal',
-  },
-];
-
 export default function Designs() {
+  const { data } = useData();
+  const PROJECTS = data.designs;
   const [active, setActive] = useState(null);
   const ref = useReveal();
 

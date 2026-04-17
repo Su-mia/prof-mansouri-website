@@ -1,65 +1,10 @@
 import { useReveal } from '../hooks/useReveal';
+import { useData } from '../context/DataContext';
 import './Teaching.css';
 
-const COURSES = [
-  {
-    code: 'ARCH 301',
-    title: 'Architectural Theory & Criticism',
-    level: 'Undergraduate · Year 3',
-    semester: 'Both semesters',
-    desc: 'Survey of architectural thought from the Enlightenment to contemporary discourse. Emphasis on close reading and critical writing.',
-    materials: ['Lecture slides', 'Reading list', 'Essay prompts'],
-  },
-  {
-    code: 'ARCH 502',
-    title: 'Advanced Design Studio',
-    level: 'Graduate · Year 1',
-    semester: 'Autumn',
-    desc: 'Complex mixed-use design project integrating urban context, programmatic innovation, and tectonic expression. Individual and team work.',
-    materials: ['Studio briefs', 'Reference sheets', 'Assessment criteria'],
-  },
-  {
-    code: 'ARCH 410',
-    title: 'Sustainable & Bioclimatic Design',
-    level: 'Undergraduate · Year 4',
-    semester: 'Spring',
-    desc: 'Passive design strategies, energy simulation methods, and daylighting analysis applied to Mediterranean and arid climatic zones.',
-    materials: ['Technical handouts', 'Simulation tutorials', 'Case studies'],
-  },
-  {
-    code: 'ARCH 610',
-    title: 'Heritage Conservation & Adaptive Reuse',
-    level: 'Graduate · Year 2',
-    semester: 'Spring',
-    desc: 'Principles of heritage conservation, survey methods, and design approaches for adapting historic structures to contemporary use.',
-    materials: ['Lecture notes', 'Survey manual', 'Design guidelines'],
-  },
-  {
-    code: 'ARCH 220',
-    title: 'Architectural History I',
-    level: 'Undergraduate · Year 2',
-    semester: 'Autumn',
-    desc: 'From ancient civilizations through the Renaissance: building technology, spatial concepts, and cultural context across traditions.',
-    materials: ['Image bank', 'Timeline', 'Exam guides'],
-  },
-  {
-    code: 'ARCH 705',
-    title: 'Research Methods in Architecture',
-    level: 'Graduate · Doctoral',
-    semester: 'Autumn',
-    desc: 'Qualitative and quantitative methodologies for architectural research, including case study design, ethnography, and simulation.',
-    materials: ['Methodology guide', 'Academic writing workshop', 'Bibliography templates'],
-  },
-];
-
-const THESES = [
-  { title: 'Thermal Performance of Earth Architecture in Semi-Arid Zones', student: 'M. Benali', year: '2024', level: 'PhD' },
-  { title: 'Urban Vacancy as Resource: Regeneration of Post-Industrial Sites', student: 'L. Hamdane', year: '2023', level: 'PhD' },
-  { title: 'Spatial Narratives in Children\'s Educational Environments', student: 'S. Ferhat', year: '2023', level: 'Master' },
-  { title: 'Computational Form-Finding for Shell Structures', student: 'R. Bouzid', year: '2022', level: 'Master' },
-];
-
 export default function Teaching() {
+  const { data } = useData();
+  const { courses: COURSES, theses: THESES } = data.teaching;
   const ref = useReveal();
 
   return (
@@ -77,7 +22,7 @@ export default function Teaching() {
 
         <div className="teaching__courses">
           {COURSES.map((c, i) => (
-            <div key={c.code} className={`teaching__course reveal reveal-delay-${(i % 4) + 1}`}>
+            <div key={c.id} className={`teaching__course reveal reveal-delay-${(i % 4) + 1}`}>
               <div className="teaching__course-left">
                 <span className="teaching__code">{c.code}</span>
                 <h3 className="teaching__course-title">{c.title}</h3>
@@ -112,7 +57,7 @@ export default function Teaching() {
           <h3 className="teaching__sub-title">Supervised Theses (Recent)</h3>
           <div className="teaching__thesis-list">
             {THESES.map((t) => (
-              <div key={t.title} className="teaching__thesis">
+              <div key={t.id} className="teaching__thesis">
                 <span className="teaching__thesis-level tag">{t.level}</span>
                 <div className="teaching__thesis-info">
                   <p className="teaching__thesis-title">{t.title}</p>

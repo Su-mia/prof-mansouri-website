@@ -1,8 +1,11 @@
 import { useState } from 'react';
 import { useReveal } from '../hooks/useReveal';
+import { useData } from '../context/DataContext';
 import './Contact.css';
 
 export default function Contact() {
+  const { data } = useData();
+  const contactItems = data.contact.items;
   const [form, setForm] = useState({ name: '', email: '', subject: '', message: '' });
   const [sent, setSent] = useState(false);
 
@@ -31,14 +34,8 @@ export default function Contact() {
             </p>
 
             <div className="contact__info">
-              {[
-                { label: 'Email', value: 'a.mansouri@university.dz' },
-                { label: 'Office', value: 'Faculty of Architecture, Room 214' },
-                { label: 'Office Hours', value: 'Mon & Wed, 10:00–12:00' },
-                { label: 'ResearchGate', value: 'researchgate.net/profile/…' },
-                { label: 'Google Scholar', value: 'scholar.google.com/…' },
-              ].map((item) => (
-                <div key={item.label} className="contact__info-item">
+              {contactItems.map((item) => (
+                <div key={item.id} className="contact__info-item">
                   <span className="contact__info-label">{item.label}</span>
                   <span className="contact__info-value">{item.value}</span>
                 </div>

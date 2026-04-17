@@ -1,67 +1,13 @@
 import { useState } from 'react';
 import { useReveal } from '../hooks/useReveal';
+import { useData } from '../context/DataContext';
 import './Research.css';
 
-const PAPERS = [
-  {
-    id: 1,
-    year: '2024',
-    title: 'Spatial Cognition and the Architecture of Memory: A Phenomenological Approach',
-    journal: 'Journal of Architectural Theory and Criticism',
-    tags: ['Theory', 'Phenomenology'],
-    abstract: 'This paper explores the relationship between spatial design and human memory formation, drawing on phenomenological frameworks to argue for architecture as a mnemonic apparatus.',
-    doi: '#',
-  },
-  {
-    id: 2,
-    year: '2023',
-    title: 'Bioclimatic Strategies in Contemporary North African Vernacular Architecture',
-    journal: 'Sustainable Architecture Review',
-    tags: ['Sustainability', 'Vernacular'],
-    abstract: 'An investigation of passive cooling and ventilation techniques embedded in traditional North African building typologies, evaluated through thermal simulation and field observation.',
-    doi: '#',
-  },
-  {
-    id: 3,
-    year: '2022',
-    title: 'Parametric Morphology and Structural Efficiency in Doubly-Curved Shell Structures',
-    journal: 'Architectural Science Review',
-    tags: ['Parametric', 'Structures'],
-    abstract: 'This study applies parametric generative methods to optimize the geometry of shell structures, balancing aesthetic expression with material efficiency.',
-    doi: '#',
-  },
-  {
-    id: 4,
-    year: '2021',
-    title: 'The Public Void: Rethinking Urban Plazas as Negotiated Space',
-    journal: 'Urban Design International',
-    tags: ['Urban', 'Public Space'],
-    abstract: 'An ethnographic and spatial analysis of urban plazas across Mediterranean cities, examining how design conditions shape social negotiation and inclusive use.',
-    doi: '#',
-  },
-  {
-    id: 5,
-    year: '2020',
-    title: 'Toward a Tectonic Ethics: Material Honesty in Post-Digital Architecture',
-    journal: 'Nexus Network Journal',
-    tags: ['Theory', 'Digital'],
-    abstract: 'A critical essay arguing for material honesty as an ethical imperative in architecture that increasingly relies on digital fabrication and surface simulation.',
-    doi: '#',
-  },
-  {
-    id: 6,
-    year: '2019',
-    title: 'Heritage Conservation and Adaptive Reuse: A Case Study Framework',
-    journal: 'Historic Environment: Policy & Practice',
-    tags: ['Heritage', 'Conservation'],
-    abstract: 'Proposes a decision-support framework for adaptive reuse of heritage buildings, tested against five case studies across Algeria and Tunisia.',
-    doi: '#',
-  },
-];
-
-const ALL_TAGS = ['All', ...Array.from(new Set(PAPERS.flatMap((p) => p.tags)))];
-
 export default function Research() {
+  const { data } = useData();
+  const PAPERS = data.research;
+  const ALL_TAGS = ['All', ...Array.from(new Set(PAPERS.flatMap((p) => p.tags)))];
+
   const [activeTag, setActiveTag] = useState('All');
   const [expanded, setExpanded] = useState(null);
   const ref = useReveal();
