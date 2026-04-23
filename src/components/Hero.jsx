@@ -1,6 +1,12 @@
 import { useEffect, useRef } from 'react';
+import { Link } from 'react-router-dom';
 import { useData } from '../context/DataContext';
 import './Hero.css';
+
+function HeroBtn({ href, className, children }) {
+  if (href && href.startsWith('/')) return <Link to={href} className={className}>{children}</Link>;
+  return <a href={href} className={className}>{children}</a>;
+}
 
 export default function Hero() {
   const { data } = useData();
@@ -16,8 +22,9 @@ export default function Hero() {
 
   return (
     <section id="hero" className="hero">
-      <div className="hero__grid-bg" aria-hidden="true" />
       <div className="hero__content container">
+
+        {/* Left: text */}
         <div className="hero__text">
           <span className="eyebrow hero__eyebrow">{h.eyebrow}</span>
           <h1 className="hero__name">
@@ -27,16 +34,23 @@ export default function Hero() {
           <div className="hero__line" ref={lineRef} />
           <p className="hero__bio">{h.bio}</p>
           <div className="hero__actions">
-            <a href={h.primaryBtn.href} className="hero__btn hero__btn--primary">
+            <HeroBtn href={h.primaryBtn.href} className="hero__btn hero__btn--primary">
               {h.primaryBtn.text}
-            </a>
-            <a href={h.ghostBtn.href} className="hero__btn hero__btn--ghost">
+            </HeroBtn>
+            <HeroBtn href={h.ghostBtn.href} className="hero__btn hero__btn--ghost">
               {h.ghostBtn.text}
-            </a>
+            </HeroBtn>
           </div>
         </div>
 
+        {/* Right: portrait + stats */}
         <div className="hero__aside">
+          <div className="hero__portrait">
+            <img
+              src={h.photo || '/mansouri.webp'}
+              alt={`${h.nameFirst} ${h.nameLast}`}
+            />
+          </div>
           <div className="hero__stat-list">
             {h.stats.map((s) => (
               <div key={s.id} className="hero__stat">
@@ -46,12 +60,9 @@ export default function Hero() {
             ))}
           </div>
         </div>
+
       </div>
 
-      <div className="hero__scroll-indicator" aria-hidden="true">
-        <span className="hero__scroll-line" />
-        <span className="hero__scroll-text">Scroll</span>
-      </div>
     </section>
   );
 }

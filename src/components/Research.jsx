@@ -1,35 +1,39 @@
 import { useState } from 'react';
 import { useReveal } from '../hooks/useReveal';
 import { useData } from '../context/DataContext';
+import { useLang } from '../context/LangContext';
 import './Research.css';
 
 export default function Research() {
   const { data } = useData();
+  const { t } = useLang();
   const PAPERS = data.research;
-  const ALL_TAGS = ['All', ...Array.from(new Set(PAPERS.flatMap((p) => p.tags)))];
+  const TAGS = Array.from(new Set(PAPERS.flatMap((p) => p.tags)));
 
-  const [activeTag, setActiveTag] = useState('All');
+  const [activeTag, setActiveTag] = useState(null);
   const [expanded, setExpanded] = useState(null);
   const ref = useReveal();
 
-  const filtered = activeTag === 'All' ? PAPERS : PAPERS.filter((p) => p.tags.includes(activeTag));
+  const filtered = activeTag ? PAPERS.filter((p) => p.tags.includes(activeTag)) : PAPERS;
 
   return (
     <section id="research" className="section research" ref={ref}>
       <div className="container">
         <div className="research__header reveal">
-          <span className="eyebrow">02 — Research & Papers</span>
-          <h2 className="section-title">Publications</h2>
+          <span className="eyebrow">{t.research.eyebrow}</span>
+          <h2 className="section-title">{t.research.title}</h2>
           <div className="divider" />
-          <p className="section-desc">
-            Peer-reviewed articles, book chapters, and conference proceedings spanning
-            architectural theory, sustainability, and urban design.
-          </p>
+          <p className="section-desc">{t.research.desc}</p>
         </div>
 
-        {/* Filter tabs */}
         <div className="research__filters reveal reveal-delay-1">
-          {ALL_TAGS.map((tag) => (
+          <button
+            className={`research__filter-btn ${activeTag === null ? 'active' : ''}`}
+            onClick={() => setActiveTag(null)}
+          >
+            {t.research.all}
+          </button>
+          {TAGS.map((tag) => (
             <button
               key={tag}
               className={`research__filter-btn ${activeTag === tag ? 'active' : ''}`}
@@ -40,7 +44,6 @@ export default function Research() {
           ))}
         </div>
 
-        {/* Papers list */}
         <div className="research__list">
           {filtered.map((paper, i) => (
             <div
@@ -54,7 +57,7 @@ export default function Research() {
                 <div className="research__item-meta">
                   <span className="research__year">{paper.year}</span>
                   <div className="research__tags">
-                    {paper.tags.map((t) => <span key={t} className="tag">{t}</span>)}
+                    {paper.tags.map((tag) => <span key={tag} className="tag">{tag}</span>)}
                   </div>
                 </div>
                 <div className="research__item-main">
@@ -63,12 +66,8 @@ export default function Research() {
                 </div>
                 <button className="research__toggle" aria-label="Expand">
                   <svg
-                    width="14"
-                    height="14"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="1.5"
+                    width="14" height="14" viewBox="0 0 24 24"
+                    fill="none" stroke="currentColor" strokeWidth="1.5"
                     style={{ transform: expanded === paper.id ? 'rotate(45deg)' : 'none', transition: 'transform 0.3s ease' }}
                   >
                     <line x1="12" y1="5" x2="12" y2="19" />
@@ -80,9 +79,7 @@ export default function Research() {
               {expanded === paper.id && (
                 <div className="research__item-body">
                   <p className="research__abstract">{paper.abstract}</p>
-                  <a href={paper.doi} className="research__doi">
-                    View Publication →
-                  </a>
+                  <a href={paper.doi} className="research__doi">{t.research.viewPub}</a>
                 </div>
               )}
             </div>

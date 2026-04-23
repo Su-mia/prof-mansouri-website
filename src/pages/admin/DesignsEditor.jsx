@@ -1,8 +1,9 @@
 import { useState } from 'react';
 import { useData } from '../../context/DataContext';
+import ImageUpload from './ImageUpload';
 import './EditorShared.css';
 
-const BLANK = { id: 0, title: '', type: '', year: '', area: '', status: '', desc: '', aspect: 'normal' };
+const BLANK = { id: 0, title: '', type: '', year: '', area: '', status: '', desc: '', aspect: 'normal', image: null };
 
 export default function DesignsEditor() {
   const { data, update } = useData();
@@ -77,6 +78,14 @@ export default function DesignsEditor() {
                 <div className="field form-grid--full">
                   <label>Description</label>
                   <textarea rows={3} value={draft.desc} onChange={(e) => set('desc', e.target.value)} />
+                </div>
+                <div className="form-grid--full">
+                  <ImageUpload
+                    value={draft.image || null}
+                    onChange={(val) => set('image', val)}
+                    label="Project image"
+                    aspectHint="shown as card background"
+                  />
                 </div>
               </div>
               <div className="inline-form__actions">

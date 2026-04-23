@@ -1,14 +1,15 @@
 import { useState } from 'react';
 import { useReveal } from '../hooks/useReveal';
 import { useData } from '../context/DataContext';
+import { useLang } from '../context/LangContext';
 import './Contact.css';
 
 export default function Contact() {
   const { data } = useData();
+  const { t } = useLang();
   const contactItems = data.contact.items;
   const [form, setForm] = useState({ name: '', email: '', subject: '', message: '' });
   const [sent, setSent] = useState(false);
-
   const ref = useReveal();
 
   function handleChange(e) {
@@ -25,13 +26,10 @@ export default function Contact() {
       <div className="container">
         <div className="contact__grid">
           <div className="contact__left reveal">
-            <span className="eyebrow">06 — Contact</span>
-            <h2 className="section-title">Get in<br />Touch</h2>
+            <span className="eyebrow">{t.contact.eyebrow}</span>
+            <h2 className="section-title">{t.contact.title}</h2>
             <div className="divider" />
-            <p className="section-desc">
-              Open to research collaboration, invited lectures, design consultancy,
-              and student supervision inquiries.
-            </p>
+            <p className="section-desc">{t.contact.desc}</p>
 
             <div className="contact__info">
               {contactItems.map((item) => (
@@ -49,64 +47,38 @@ export default function Contact() {
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1">
                   <polyline points="20 6 9 17 4 12" />
                 </svg>
-                <p>Message received. I will respond within a few days.</p>
+                <p>{t.contact.sent}</p>
               </div>
             ) : (
               <form className="contact__form" onSubmit={handleSubmit}>
                 <div className="contact__field">
-                  <label htmlFor="name">Name</label>
-                  <input
-                    id="name"
-                    name="name"
-                    type="text"
-                    required
-                    value={form.name}
-                    onChange={handleChange}
-                    placeholder="Your full name"
-                  />
+                  <label htmlFor="name">{t.contact.name}</label>
+                  <input id="name" name="name" type="text" required value={form.name} onChange={handleChange} placeholder={t.contact.namePh} />
                 </div>
 
                 <div className="contact__field">
-                  <label htmlFor="email">Email</label>
-                  <input
-                    id="email"
-                    name="email"
-                    type="email"
-                    required
-                    value={form.email}
-                    onChange={handleChange}
-                    placeholder="your@email.com"
-                  />
+                  <label htmlFor="email">{t.contact.email}</label>
+                  <input id="email" name="email" type="email" required value={form.email} onChange={handleChange} placeholder={t.contact.emailPh} />
                 </div>
 
                 <div className="contact__field">
-                  <label htmlFor="subject">Subject</label>
+                  <label htmlFor="subject">{t.contact.subject}</label>
                   <select id="subject" name="subject" value={form.subject} onChange={handleChange} required>
-                    <option value="" disabled>Select a topic</option>
-                    <option value="research">Research Collaboration</option>
-                    <option value="lecture">Invited Lecture</option>
-                    <option value="consultation">Design Consultation</option>
-                    <option value="supervision">Thesis Supervision</option>
-                    <option value="other">Other</option>
+                    <option value="" disabled>{t.contact.selectTopic}</option>
+                    <option value="research">{t.contact.subjects.research}</option>
+                    <option value="lecture">{t.contact.subjects.lecture}</option>
+                    <option value="consultation">{t.contact.subjects.consultation}</option>
+                    <option value="supervision">{t.contact.subjects.supervision}</option>
+                    <option value="other">{t.contact.subjects.other}</option>
                   </select>
                 </div>
 
                 <div className="contact__field">
-                  <label htmlFor="message">Message</label>
-                  <textarea
-                    id="message"
-                    name="message"
-                    rows="5"
-                    required
-                    value={form.message}
-                    onChange={handleChange}
-                    placeholder="Briefly describe your inquiry…"
-                  />
+                  <label htmlFor="message">{t.contact.message}</label>
+                  <textarea id="message" name="message" rows="5" required value={form.message} onChange={handleChange} placeholder={t.contact.messagePh} />
                 </div>
 
-                <button type="submit" className="contact__submit">
-                  Send Message
-                </button>
+                <button type="submit" className="contact__submit">{t.contact.submit}</button>
               </form>
             )}
           </div>

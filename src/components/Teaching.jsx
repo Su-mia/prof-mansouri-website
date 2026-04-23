@@ -1,9 +1,11 @@
 import { useReveal } from '../hooks/useReveal';
 import { useData } from '../context/DataContext';
+import { useLang } from '../context/LangContext';
 import './Teaching.css';
 
 export default function Teaching() {
   const { data } = useData();
+  const { t } = useLang();
   const { courses: COURSES, theses: THESES } = data.teaching;
   const ref = useReveal();
 
@@ -11,13 +13,10 @@ export default function Teaching() {
     <section id="teaching" className="section teaching" ref={ref}>
       <div className="container">
         <div className="teaching__header reveal">
-          <span className="eyebrow">05 — Teaching</span>
-          <h2 className="section-title">Courses &<br />Materials</h2>
+          <span className="eyebrow">{t.teaching.eyebrow}</span>
+          <h2 className="section-title">{t.teaching.title}</h2>
           <div className="divider" />
-          <p className="section-desc">
-            Course syllabi, lecture resources, studio briefs, and supervised
-            thesis projects available for download.
-          </p>
+          <p className="section-desc">{t.teaching.desc}</p>
         </div>
 
         <div className="teaching__courses">
@@ -52,16 +51,15 @@ export default function Teaching() {
           ))}
         </div>
 
-        {/* Supervised theses */}
         <div className="teaching__theses reveal">
-          <h3 className="teaching__sub-title">Supervised Theses (Recent)</h3>
+          <h3 className="teaching__sub-title">{t.teaching.theses}</h3>
           <div className="teaching__thesis-list">
-            {THESES.map((t) => (
-              <div key={t.id} className="teaching__thesis">
-                <span className="teaching__thesis-level tag">{t.level}</span>
+            {THESES.map((thesis) => (
+              <div key={thesis.id} className="teaching__thesis">
+                <span className="teaching__thesis-level tag">{thesis.level}</span>
                 <div className="teaching__thesis-info">
-                  <p className="teaching__thesis-title">{t.title}</p>
-                  <p className="teaching__thesis-student">{t.student} · {t.year}</p>
+                  <p className="teaching__thesis-title">{thesis.title}</p>
+                  <p className="teaching__thesis-student">{thesis.student} · {thesis.year}</p>
                 </div>
               </div>
             ))}

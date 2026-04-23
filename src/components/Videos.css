@@ -127,6 +127,95 @@
   margin-top: 4px;
 }
 
+/* Modal */
+.vid-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  background: rgba(0, 0, 0, 0.82);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+
+.vid-modal__box {
+  position: relative;
+  background: #111;
+  max-width: 860px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.vid-modal__close {
+  position: absolute;
+  top: -36px;
+  right: 0;
+  background: none;
+  border: none;
+  color: #ccc;
+  font-size: 1rem;
+  cursor: pointer;
+  line-height: 1;
+  padding: 4px 8px;
+  transition: color 0.2s;
+}
+
+.vid-modal__close:hover { color: #fff; }
+
+.vid-modal__iframe {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border: none;
+  display: block;
+  background: #000;
+}
+
+.vid-modal__video {
+  width: 100%;
+  display: block;
+  background: #000;
+  max-height: 72vh;
+}
+
+.vid-modal__fallback {
+  width: 100%;
+  display: block;
+  object-fit: contain;
+  max-height: 72vh;
+  background: #000;
+}
+
+.vid-modal__loading,
+.vid-modal__empty {
+  aspect-ratio: 16/9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #666;
+  font-size: 0.78rem;
+  letter-spacing: 0.08em;
+}
+
+.vid-modal__info {
+  padding: 16px 20px;
+  border-top: 1px solid #222;
+}
+
+.vid-modal__title {
+  font-size: 0.85rem;
+  color: #ddd;
+  font-weight: 400;
+  margin-bottom: 4px;
+}
+
+.vid-modal__meta {
+  font-size: 0.7rem;
+  color: #666;
+  letter-spacing: 0.06em;
+}
+
 @media (max-width: 900px) {
   .videos__grid {
     grid-template-columns: 1fr 1fr;

@@ -1,142 +1,277 @@
-.navbar {
+/* ── Sidebar ── */
+.sidenav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 220px;
+  background: #fff;
+  border-right: 1px solid #e8e8e8;
+  display: flex;
+  flex-direction: column;
+  z-index: 200;
+  overflow-y: auto;
+}
+
+/* Brand */
+.sidenav__brand {
+  padding: 40px 28px 28px;
+  border-bottom: 1px solid #f2f2f2;
+  flex-shrink: 0;
+}
+
+.sidenav__brand-link {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+}
+
+.sidenav__name {
+  display: block;
+  font-size: 0.88rem;
+  font-weight: 400;
+  letter-spacing: 0.03em;
+  color: #111;
+  line-height: 1.3;
+}
+
+.sidenav__title {
+  display: block;
+  font-size: 0.58rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #bbb;
+  margin-top: 5px;
+}
+
+/* Nav */
+.sidenav__nav {
+  flex: 1;
+  padding: 20px 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.sidenav__link {
+  display: block;
+  padding: 9px 28px;
+  font-size: 0.68rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #aaa;
+  font-weight: 400;
+  transition: color 0.2s ease;
+  border-left: 2px solid transparent;
+  text-decoration: none;
+}
+
+.sidenav__link:hover {
+  color: #333;
+}
+
+.sidenav__link.active {
+  color: #111;
+  border-left-color: #111;
+}
+
+/* Social icons */
+.sidenav__social {
+  padding: 20px 28px;
+  border-top: 1px solid #f2f2f2;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  flex-shrink: 0;
+}
+
+.sidenav__soc-link {
+  color: #ccc;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  transition: color 0.2s ease;
+  text-decoration: none;
+}
+
+.sidenav__soc-link:hover {
+  color: #111;
+}
+
+.sidenav__soc-text {
+  font-size: 0.85rem;
+  font-weight: 600;
+  line-height: 1;
+  font-style: italic;
+}
+
+.sidenav__soc-text--sm {
+  font-size: 0.58rem;
+  font-weight: 600;
+  font-style: normal;
+  letter-spacing: 0.04em;
+}
+
+/* ── Language switcher ── */
+.sidenav__langs {
+  display: flex;
+  padding: 10px 28px;
+  border-bottom: 1px solid #f2f2f2;
+  gap: 2px;
+  flex-shrink: 0;
+}
+
+.sidenav__langs--inline {
+  padding: 0;
+  border: none;
+}
+
+.sidenav__lang-btn {
+  background: none;
+  border: none;
+  font-size: 0.58rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #ccc;
+  cursor: pointer;
+  padding: 4px 7px;
+  font-family: inherit;
+  transition: color 0.2s ease;
+  line-height: 1;
+}
+
+.sidenav__lang-btn:hover { color: #555; }
+.sidenav__lang-btn.active { color: #111; font-weight: 500; }
+
+/* ── Mobile top bar ── */
+.sidenav__topbar {
+  display: none;
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
-  z-index: 100;
-  padding: 24px 0;
-  transition: background 0.4s ease, padding 0.4s ease, border-color 0.4s ease;
-  border-bottom: 1px solid transparent;
-}
-
-.navbar--scrolled {
-  background: rgba(255, 255, 255, 0.92);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  padding: 16px 0;
-  border-bottom-color: #e0e0e0;
-}
-
-.navbar__inner {
-  display: flex;
+  height: 56px;
+  background: rgba(255, 255, 255, 0.96);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-bottom: 1px solid #e8e8e8;
+  z-index: 300;
   align-items: center;
   justify-content: space-between;
+  padding: 0 24px;
 }
 
-.navbar__brand {
+.sidenav__topbar-brand {
   display: flex;
-  flex-direction: column;
-  gap: 1px;
-}
-
-.navbar__name {
-  font-size: 0.95rem;
-  font-weight: 400;
-  letter-spacing: 0.04em;
-  color: #111;
-}
-
-.navbar__title {
-  font-size: 0.65rem;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: #aaa;
-}
-
-.navbar__nav {
-  display: flex;
-  gap: 36px;
   align-items: center;
 }
 
-.navbar__link {
-  font-size: 0.75rem;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: #999;
-  font-weight: 400;
-  transition: color 0.2s ease;
-  position: relative;
+.sidenav__topbar-right {
+  display: flex;
+  align-items: center;
+  gap: 4px;
 }
 
-.navbar__link::after {
-  content: '';
-  position: absolute;
-  bottom: -3px;
-  left: 0;
-  width: 0;
-  height: 1px;
-  background: #111;
-  transition: width 0.3s ease;
+.sidenav__topbar .sidenav__name {
+  font-size: 0.85rem;
 }
 
-.navbar__link:hover {
-  color: #111;
-}
-
-.navbar__link:hover::after {
-  width: 100%;
-}
-
-/* Burger */
-.navbar__burger {
-  display: none;
+/* Burger button */
+.sidenav__burger {
+  display: flex;
   flex-direction: column;
   gap: 5px;
   background: none;
   border: none;
   padding: 4px;
+  cursor: pointer;
 }
 
-.navbar__burger span {
+.sidenav__burger span {
   display: block;
-  width: 22px;
+  width: 20px;
   height: 1px;
   background: #aaa;
-  transition: all 0.3s ease;
+  transition: all 0.28s ease;
   transform-origin: center;
 }
 
-.navbar__burger span.open:nth-child(1) {
+.sidenav__burger span.open:nth-child(1) {
   transform: translateY(6px) rotate(45deg);
   background: #111;
 }
 
-.navbar__burger span.open:nth-child(2) {
+.sidenav__burger span.open:nth-child(2) {
   opacity: 0;
 }
 
-.navbar__burger span.open:nth-child(3) {
+.sidenav__burger span.open:nth-child(3) {
   transform: translateY(-6px) rotate(-45deg);
   background: #111;
 }
 
+/* Backdrop */
+.sidenav__backdrop {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.25);
+  z-index: 190;
+}
+
+/* ── RTL overrides ── */
+[dir="rtl"] .sidenav {
+  left: auto;
+  right: 0;
+  border-right: none;
+  border-left: 1px solid #e8e8e8;
+}
+
+[dir="rtl"] .sidenav__link {
+  border-left: none;
+  border-right: 2px solid transparent;
+}
+
+[dir="rtl"] .sidenav__link.active {
+  border-right-color: #111;
+}
+
+[dir="rtl"] .sidenav__topbar {
+  left: 0;
+  right: 0;
+}
+
 @media (max-width: 768px) {
-  .navbar__burger {
+  [dir="rtl"] .sidenav {
+    left: auto;
+    right: 0;
+    transform: translateX(100%);
+  }
+  [dir="rtl"] .sidenav--open {
+    transform: translateX(0);
+  }
+}
+
+@media (max-width: 768px) {
+  .sidenav__topbar {
     display: flex;
   }
 
-  .navbar__nav {
-    position: fixed;
+  .sidenav {
     top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(255, 255, 255, 0.97);
-    flex-direction: column;
-    justify-content: center;
-    gap: 32px;
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.3s ease;
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+    width: 260px;
+    box-shadow: none;
   }
 
-  .navbar__nav--open {
-    opacity: 1;
-    pointer-events: all;
+  .sidenav--open {
+    transform: translateX(0);
+    box-shadow: 4px 0 24px rgba(0, 0, 0, 0.1);
   }
 
-  .navbar__link {
-    font-size: 1rem;
+  .sidenav__backdrop {
+    display: block;
   }
 }

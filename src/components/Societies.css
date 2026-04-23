@@ -1,0 +1,97 @@
+.societies {
+  border-top: 1px solid #e8e8e8;
+  background: #fff;
+}
+
+.societies__header {
+  margin-bottom: 56px;
+}
+
+.societies__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: #e8e8e8;
+  border: 1px solid #e8e8e8;
+}
+
+.societies__card {
+  background: #fff;
+  padding: 36px 32px;
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+  transition: background 0.2s ease;
+}
+
+.societies__card:hover {
+  background: #fafafa;
+}
+
+.societies__logo {
+  width: 52px;
+  height: 52px;
+  border: 1px solid #e8e8e8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  background: #f8f8f8;
+}
+
+.societies__logo img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  padding: 6px;
+}
+
+.societies__abbr {
+  font-size: 0.68rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #bbb;
+  font-weight: 400;
+}
+
+.societies__info {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.societies__name {
+  font-size: 0.88rem;
+  color: #222;
+  font-weight: 400;
+  line-height: 1.4;
+}
+
+.societies__role {
+  font-size: 0.73rem;
+  color: #777;
+  letter-spacing: 0.04em;
+}
+
+.societies__meta {
+  font-size: 0.65rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #bbb;
+  margin-top: 4px;
+}
+
+@media (max-width: 900px) {
+  .societies__grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 560px) {
+  .societies__grid {
+    grid-template-columns: 1fr;
+  }
+  .societies__card {
+    padding: 24px 20px;
+  }
+}

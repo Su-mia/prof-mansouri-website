@@ -1,1 +1,33 @@
-/* App-level overrides — kept minimal */
+.site-layout {
+  display: flex;
+  min-height: 100vh;
+}
+
+.site-main {
+  flex: 1;
+  margin-left: 220px;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.site-main > *:not(footer) {
+  flex: 1;
+}
+
+/* RTL: sidebar on right */
+[dir="rtl"] .site-main {
+  margin-left: 0;
+  margin-right: 220px;
+}
+
+@media (max-width: 768px) {
+  .site-main {
+    margin-left: 0;
+    padding-top: 56px;
+  }
+
+  [dir="rtl"] .site-main {
+    margin-right: 0;
+  }
+}

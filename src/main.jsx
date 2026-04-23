@@ -3,6 +3,7 @@ import { createRoot } from 'react-dom/client'
 import { BrowserRouter } from 'react-router-dom'
 import { AuthProvider } from './context/AuthContext'
 import { DataProvider } from './context/DataContext'
+import { LangProvider } from './context/LangContext'
 import './index.css'
 import App from './App.jsx'
 
@@ -10,9 +11,11 @@ createRoot(document.getElementById('root')).render(
   <StrictMode>
     <BrowserRouter>
       <DataProvider>
-        <AuthProvider>
-          <App />
-        </AuthProvider>
+        <LangProvider>
+          <AuthProvider>
+            <App />
+          </AuthProvider>
+        </LangProvider>
       </DataProvider>
     </BrowserRouter>
   </StrictMode>,

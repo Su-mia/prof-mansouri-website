@@ -1,0 +1,31 @@
+.media-upload {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.media-upload__video {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.media-upload__vid-badge {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 10px;
+  border: 1px solid #e0e0e0;
+  font-size: 0.68rem;
+  letter-spacing: 0.04em;
+  color: #555;
+  max-width: 280px;
+  overflow: hidden;
+}
+
+.media-upload__vid-badge span {
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

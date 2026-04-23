@@ -2,6 +2,7 @@ import { createContext, useContext, useState } from 'react';
 
 const INITIAL = {
   hero: {
+    photo: '/mansouri.webp',
     eyebrow: 'Architecture · Research · Education',
     nameFirst: 'Ahmed',
     nameLast: 'Mansouri',
@@ -13,8 +14,8 @@ const INITIAL = {
       { id: 3, num: '15+', label: 'Design Projects' },
       { id: 4, num: '500+', label: 'Students Mentored' },
     ],
-    primaryBtn: { text: 'View Research', href: '#research' },
-    ghostBtn: { text: 'Get in Touch', href: '#contact' },
+    primaryBtn: { text: 'View Research', href: '/research' },
+    ghostBtn: { text: 'Get in Touch', href: '/contact' },
   },
   about: {
     education: [
@@ -43,20 +44,20 @@ const INITIAL = {
     { id: 6, year: '2019', title: 'Heritage Conservation and Adaptive Reuse: A Case Study Framework', journal: 'Historic Environment: Policy & Practice', tags: ['Heritage', 'Conservation'], abstract: 'Proposes a decision-support framework for adaptive reuse of heritage buildings, tested against five case studies across Algeria and Tunisia.', doi: '#' },
   ],
   designs: [
-    { id: 1, title: 'Cultural Center — Algiers', type: 'Cultural', year: '2022', area: '12,400 m²', status: 'Built', desc: 'A monolithic concrete structure articulated by light wells and vaulted promenades, set against the Mediterranean hillside.', aspect: 'wide' },
-    { id: 2, title: 'Desert Research Station — Tamanrasset', type: 'Research', year: '2021', area: '3,200 m²', status: 'Built', desc: 'Low-profile rammed-earth compound integrating passive ventilation and solar shading derived from Saharan vernacular models.', aspect: 'tall' },
-    { id: 3, title: 'Waterfront Promenade — Annaba', type: 'Urban', year: '2020', area: '—', status: 'Realized', desc: 'An urban edge redefined by canopy structures, reflecting pools, and granite paving that mediates between the city grid and sea.', aspect: 'wide' },
-    { id: 4, title: 'School of Architecture — Tlemcen', type: 'Educational', year: '2018', area: '8,600 m²', status: 'Built', desc: 'Layered terraced volumes carved from the hillside topography; studios oriented toward the Medina skyline.', aspect: 'normal' },
-    { id: 5, title: 'Memorial Garden — Constantine', type: 'Cultural', year: '2017', area: '—', status: 'Competition', desc: 'A landscaped void carved into rocky terrain, where silence, erosion, and inscription form the material language of commemoration.', aspect: 'normal' },
-    { id: 6, title: 'Eco-Housing Prototype', type: 'Residential', year: '2016', area: '180 m²', status: 'Prototype', desc: 'A net-zero dwelling demonstrating bioclimatic principles through earthen walls, green roof, and roof-integrated water harvesting.', aspect: 'normal' },
+    { id: 1, title: 'Cultural Center — Algiers', type: 'Cultural', year: '2022', area: '12,400 m²', status: 'Built', desc: 'A monolithic concrete structure articulated by light wells and vaulted promenades, set against the Mediterranean hillside.', aspect: 'wide', image: null },
+    { id: 2, title: 'Desert Research Station — Tamanrasset', type: 'Research', year: '2021', area: '3,200 m²', status: 'Built', desc: 'Low-profile rammed-earth compound integrating passive ventilation and solar shading derived from Saharan vernacular models.', aspect: 'tall', image: null },
+    { id: 3, title: 'Waterfront Promenade — Annaba', type: 'Urban', year: '2020', area: '—', status: 'Realized', desc: 'An urban edge redefined by canopy structures, reflecting pools, and granite paving that mediates between the city grid and sea.', aspect: 'wide', image: null },
+    { id: 4, title: 'School of Architecture — Tlemcen', type: 'Educational', year: '2018', area: '8,600 m²', status: 'Built', desc: 'Layered terraced volumes carved from the hillside topography; studios oriented toward the Medina skyline.', aspect: 'normal', image: null },
+    { id: 5, title: 'Memorial Garden — Constantine', type: 'Cultural', year: '2017', area: '—', status: 'Competition', desc: 'A landscaped void carved into rocky terrain, where silence, erosion, and inscription form the material language of commemoration.', aspect: 'normal', image: null },
+    { id: 6, title: 'Eco-Housing Prototype', type: 'Residential', year: '2016', area: '180 m²', status: 'Prototype', desc: 'A net-zero dwelling demonstrating bioclimatic principles through earthen walls, green roof, and roof-integrated water harvesting.', aspect: 'normal', image: null },
   ],
   videos: [
-    { id: 1, title: 'Architecture as Memory: A Public Lecture', duration: '52:14', type: 'Lecture', year: '2024', venue: 'National School of Architecture', desc: 'Keynote address exploring how architecture encodes collective and individual memory through spatial organization and material choice.' },
-    { id: 2, title: 'Sustainable Design in the Maghreb Context', duration: '38:40', type: 'Conference', year: '2023', venue: 'EARC Symposium, Tunis', desc: 'Paper presentation at the Euro-African Regional Conference on climate-responsive architecture informed by vernacular tradition.' },
-    { id: 3, title: 'Parametric Tools in Studio Education', duration: '44:20', type: 'Workshop', year: '2023', venue: 'Department of Architecture', desc: 'A recorded workshop introducing Grasshopper and Rhino to third-year architecture students, with live modeling exercises.' },
-    { id: 4, title: 'Desert Vernacular: Field Recording', duration: '18:05', type: 'Documentary', year: '2022', venue: 'Tamanrasset, Algeria', desc: 'A short documentary following a research field trip documenting Saharan ksour architecture and earthen construction techniques.' },
-    { id: 5, title: 'Heritage and Modernity: Panel Discussion', duration: '1:24:10', type: 'Panel', year: '2022', venue: 'University of Architecture — International Forum', desc: 'A moderated panel addressing the tension between heritage conservation and the imperatives of contemporary urban development.' },
-    { id: 6, title: 'Tectonic Ethics in the Post-Digital Age', duration: '29:55', type: 'Lecture', year: '2021', venue: 'Architecture Review Podcast', desc: 'A recorded podcast episode discussing material authenticity, craft, and the ethical dimensions of computational design.' },
+    { id: 1, title: 'Architecture as Memory: A Public Lecture', duration: '52:14', type: 'Lecture', year: '2024', venue: 'National School of Architecture', desc: 'Keynote address exploring how architecture encodes collective and individual memory through spatial organization and material choice.', thumb: null, videoKey: null, ytbLink: null },
+    { id: 2, title: 'Sustainable Design in the Maghreb Context', duration: '38:40', type: 'Conference', year: '2023', venue: 'EARC Symposium, Tunis', desc: 'Paper presentation at the Euro-African Regional Conference on climate-responsive architecture informed by vernacular tradition.', thumb: null, videoKey: null, ytbLink: null },
+    { id: 3, title: 'Parametric Tools in Studio Education', duration: '44:20', type: 'Workshop', year: '2023', venue: 'Department of Architecture', desc: 'A recorded workshop introducing Grasshopper and Rhino to third-year architecture students, with live modeling exercises.', thumb: null, videoKey: null, ytbLink: null },
+    { id: 4, title: 'Desert Vernacular: Field Recording', duration: '18:05', type: 'Documentary', year: '2022', venue: 'Tamanrasset, Algeria', desc: 'A short documentary following a research field trip documenting Saharan ksour architecture and earthen construction techniques.', thumb: null, videoKey: null, ytbLink: null },
+    { id: 5, title: 'Heritage and Modernity: Panel Discussion', duration: '1:24:10', type: 'Panel', year: '2022', venue: 'University of Architecture — International Forum', desc: 'A moderated panel addressing the tension between heritage conservation and the imperatives of contemporary urban development.', thumb: null, videoKey: null, ytbLink: null },
+    { id: 6, title: 'Tectonic Ethics in the Post-Digital Age', duration: '29:55', type: 'Lecture', year: '2021', venue: 'Architecture Review Podcast', desc: 'A recorded podcast episode discussing material authenticity, craft, and the ethical dimensions of computational design.', thumb: null, videoKey: null, ytbLink: null },
   ],
   teaching: {
     courses: [
@@ -74,6 +75,25 @@ const INITIAL = {
       { id: 4, title: 'Computational Form-Finding for Shell Structures', student: 'R. Bouzid', year: '2022', level: 'Master' },
     ],
   },
+  societies: [
+    { id: 1, name: 'Union of Arab Architects', role: 'Member', since: '2010', country: 'Regional', logo: null },
+    { id: 2, name: 'Algerian Order of Architects', role: 'Registered Member', since: '2006', country: 'Algeria', logo: null },
+    { id: 3, name: 'Docomomo International', role: 'Corresponding Member', since: '2015', country: 'International', logo: null },
+    { id: 4, name: 'Architectural Research Centers Consortium', role: 'Associate Member', since: '2018', country: 'International', logo: null },
+  ],
+  social: [
+    { id: 1, platform: 'YouTube', label: 'YouTube Channel 1', url: '' },
+    { id: 2, platform: 'YouTube', label: 'YouTube Channel 2', url: '' },
+    { id: 3, platform: 'YouTube', label: 'YouTube Channel 3', url: '' },
+    { id: 4, platform: 'Facebook', label: 'Facebook Page 1', url: '' },
+    { id: 5, platform: 'Facebook', label: 'Facebook Page 2', url: '' },
+    { id: 6, platform: 'Facebook', label: 'Facebook Page 3', url: '' },
+    { id: 7, platform: 'X', label: 'X / Twitter', url: '' },
+    { id: 8, platform: 'ResearchGate', label: 'ResearchGate', url: '' },
+    { id: 9, platform: 'Academia', label: 'Academia.edu', url: '' },
+    { id: 10, platform: 'Email', label: 'Email', url: '' },
+    { id: 11, platform: 'ORCID', label: 'ORCID', url: '' },
+  ],
   contact: {
     items: [
       { id: 1, label: 'Email', value: 'a.mansouri@university.dz' },
@@ -92,7 +112,10 @@ const INITIAL = {
 function load() {
   try {
     const stored = localStorage.getItem('am_site_data');
-    return stored ? JSON.parse(stored) : INITIAL;
+    if (!stored) return INITIAL;
+    const parsed = JSON.parse(stored);
+    // Shallow merge ensures new top-level keys (societies, social) are present
+    return { ...INITIAL, ...parsed };
   } catch {
     return INITIAL;
   }
@@ -106,7 +129,15 @@ export function DataProvider({ children }) {
   function update(patch) {
     setData((prev) => {
       const next = { ...prev, ...patch };
-      localStorage.setItem('am_site_data', JSON.stringify(next));
+      try {
+        localStorage.setItem('am_site_data', JSON.stringify(next));
+      } catch (e) {
+        if (e.name === 'QuotaExceededError') {
+          alert('Storage full: the image could not be saved. Try uploading a smaller file.');
+          return prev;
+        }
+        throw e;
+      }
       return next;
     });
   }

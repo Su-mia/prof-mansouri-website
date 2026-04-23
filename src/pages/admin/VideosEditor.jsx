@@ -1,8 +1,10 @@
 import { useState } from 'react';
 import { useData } from '../../context/DataContext';
+import { deleteBlob } from '../../utils/mediaDB';
+import MediaUpload from './MediaUpload';
 import './EditorShared.css';
 
-const BLANK = { id: 0, title: '', duration: '', type: '', year: '', venue: '', desc: '' };
+const BLANK = { id: 0, title: '', duration: '', type: '', year: '', venue: '', desc: '', thumb: null, videoKey: null, ytbLink: null };
 
 export default function VideosEditor() {
   const { data, update } = useData();
@@ -16,7 +18,8 @@ export default function VideosEditor() {
   function startAdd() {
     const id = Date.now();
     setDraft({ ...BLANK, id });
-    setEditId(id); setSaved(false);
+    setEditId(id);
+    setSaved(false);
   }
 
   function saveDraft() {
@@ -24,11 +27,14 @@ export default function VideosEditor() {
     const next = exists ? videos.map((v) => (v.id === draft.id ? draft : v)) : [...videos, draft];
     setVideos(next);
     update({ videos: next });
-    setEditId(null); setSaved(true);
+    setEditId(null);
+    setSaved(true);
   }
 
-  function remove(id) {
-    const next = videos.filter((v) => v.id !== id);
+  async function remove(id) {
+    const v = videos.find((x) => x.id === id);
+    if (v?.videoKey) await deleteBlob(v.videoKey);
+    const next = videos.filter((x) => x.id !== id);
     setVideos(next);
     update({ videos: next });
     setSaved(true);
@@ -67,8 +73,24 @@ export default function VideosEditor() {
                   <input value={draft.venue} onChange={(e) => set('venue', e.target.value)} placeholder="Institution or event" />
                 </div>
                 <div className="field form-grid--full">
+                  <label>YouTube Link <span style={{ color: '#bbb', fontWeight: 300, textTransform: 'none', letterSpacing: 0 }}>(overrides uploaded video)</span></label>
+                  <input
+                    value={draft.ytbLink || ''}
+                    onChange={(e) => set('ytbLink', e.target.value || null)}
+                    placeholder="https://youtube.com/watch?v=… or https://youtu.be/…"
+                  />
+                </div>
+                <div className="field form-grid--full">
                   <label>Description</label>
                   <textarea rows={3} value={draft.desc} onChange={(e) => set('desc', e.target.value)} />
+                </div>
+                <div className="form-grid--full">
+                  <MediaUpload
+                    thumb={draft.thumb}
+                    videoKey={draft.videoKey}
+                    onThumbChange={(val) => set('thumb', val)}
+                    onVideoChange={(val) => set('videoKey', val)}
+                  />
                 </div>
               </div>
               <div className="inline-form__actions">
@@ -80,7 +102,11 @@ export default function VideosEditor() {
             <div key={v.id} className="item-row">
               <div className="item-row__body">
                 <span className="item-row__primary">{v.title}</span>
-                <span className="item-row__secondary">{v.type} · {v.year} · {v.duration}</span>
+                <span className="item-row__secondary">
+                  {v.type} · {v.year} · {v.duration}
+                  {v.ytbLink && ' · YouTube'}
+                  {v.videoKey && !v.ytbLink && ' · Video file'}
+                </span>
               </div>
               <div className="item-row__actions">
                 <button className="btn btn--ghost btn--sm" onClick={() => startEdit(v)}>Edit</button>

@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useData } from '../../context/DataContext';
+import ImageUpload from './ImageUpload';
 import './EditorShared.css';
 
 export default function HeroEditor() {
@@ -54,6 +55,17 @@ export default function HeroEditor() {
     <div className="editor">
       <p className="editor__title">Hero Section</p>
       <p className="editor__subtitle">Landing page — name, bio, stats and call-to-action buttons.</p>
+
+      {/* Portrait photo */}
+      <div className="editor-section" style={{ marginTop: 0, paddingTop: 0, borderTop: 'none', marginBottom: 28 }}>
+        <span className="editor-section__label">Portrait Photo</span>
+        <ImageUpload
+          value={form.photo || null}
+          onChange={(val) => set('photo', val || '/mansouri.webp')}
+          label="Profile image"
+          aspectHint="displayed in hero section"
+        />
+      </div>
 
       <div className="form-grid" style={{ gap: 16 }}>
         <div className="field">
